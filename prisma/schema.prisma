@@ -18,20 +18,47 @@ model User {
   name           String
   email          String
   hashedPassword String
+  userTypeId     Int
+  photoUrl       String?
 
-  products Product[]
+  userType              UserType      @relation(fields: [userTypeId], references: [id])
+  scheduledAppointments Appointment[] @relation("customer")
+  ownedAppointments     Appointment[] @relation("user")
 
   @@map("users")
 }
 
-model Product {
-  id               Int     @id @default(autoincrement())
-  name             String
-  value            Decimal @db.Decimal(5, 2)
-  ammountAvailable Int     @default(0)
-  creatorId        String
+model UserType {
+  id   Int    @id @default(autoincrement())
+  name String @unique
 
-  createdBy User @relation(fields: [creatorId], references: [id])
+  users User[]
 
-  @@map("products")
+  @@map("user_types")
+}
+
+model Appointment {
+  id          Int      @id @default(autoincrement())
+  observation String?
+  dateTime    DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  customerId  String   @db.Uuid()
+  barberId    String   @db.Uuid()
+  statusId    Int?     @default(1) // pending
+
+  customer User               @relation(fields: [customerId], references: [id], name: "customer")
+  barber   User               @relation(fields: [barberId], references: [id], name: "user")
+  status   AppointmentStatus? @relation(fields: [statusId], references: [id])
+
+  @@map("appointments")
+}
+
+model AppointmentStatus {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  appointments Appointment[]
+
+  @@map("appointment_status")
 }
