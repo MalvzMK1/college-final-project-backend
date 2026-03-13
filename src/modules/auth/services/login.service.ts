@@ -60,6 +60,6 @@ export class LoginService {
       algorithm: this.jwtAlgorithm,
     });
 
-    return { token };
+    return { token, userTypeId };
   }
 }

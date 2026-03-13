@@ -13,6 +13,10 @@ export class RegisterRequestDTO {
   @IsNotEmpty()
   @IsStrongPassword({
     minLength: 8,
+    minUppercase: 0,
+    minLowercase: 0,
+    minSymbols: 0,
+    minNumbers: 0,
   })
   password!: string;
 }
