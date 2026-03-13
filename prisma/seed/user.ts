@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client"
 import { UserCreateManyInput } from "generated/prisma/models";
 import { UserTypesEnum } from "src/shared/enum";
 import { hash } from "crypto";
 import { SeedFunction } from "./seed-function-type";
+import { PrismaClient } from "generated/prisma/client";
 
 export const createUsers: SeedFunction = async (prisma: PrismaClient) => {
   const usersToBeCreated: UserCreateManyInput[] = [
