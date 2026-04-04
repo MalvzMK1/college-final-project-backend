@@ -5,6 +5,7 @@ import { AuthenticationGuard, AuthorizationGuard } from './shared/guards';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
@@ -18,10 +19,15 @@ import { ConfigModule } from '@nestjs/config';
     }),
 
     AuthModule,
+    AdminModule,
     RouterModule.register([
       {
         path: 'auth',
         module: AuthModule,
+      },
+      {
+        path: 'admin',
+        module: AdminModule,
       },
     ]),
   ],
