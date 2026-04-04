@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
 import { AdminModule } from './modules/admin/admin.module';
+import { CustomerModule } from './modules/customer/customer.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AdminModule } from './modules/admin/admin.module';
 
     AuthModule,
     AdminModule,
+    CustomerModule,
     RouterModule.register([
       {
         path: 'auth',
@@ -28,6 +30,10 @@ import { AdminModule } from './modules/admin/admin.module';
       {
         path: 'admin',
         module: AdminModule,
+      },
+      {
+        path: 'customer',
+        module: CustomerModule,
       },
     ]),
   ],
