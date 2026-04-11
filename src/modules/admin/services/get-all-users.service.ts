@@ -21,8 +21,8 @@ export class GetAllUsersService {
     const [users, totalCount] = await this.prismaService.$transaction([
       this.prismaService.user.findMany({
         where,
-        skip,
-        take,
+        skip: +skip,
+        take: +take,
         select: {
           id: true,
           name: true,
