@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from '../decorators';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
+  private logger = new Logger(AuthenticationGuard.name);
   private jwtAccessTokenSecret: string;
   private jwtAlgorithm: JwtSignOptions['algorithm'];
 
@@ -38,7 +39,7 @@ export class AuthenticationGuard implements CanActivate {
   private extractTokenFromRequest(request: Request): string | undefined {
     const [type, token]: string[] = request.headers['authorization']?.split(' ') ?? ['', ''];
 
-    return ['Bearer', 'API-Key'].includes(type.toLowerCase()) ? token : undefined;
+    return ['bearer', 'api-key'].includes(type.toLowerCase()) ? token : undefined;
   }
 
   private async validateToken({
@@ -63,6 +64,8 @@ export class AuthenticationGuard implements CanActivate {
       request['user'] = payload;
       request['userId'] = payload?.sub;
     } catch (error) {
+      this.logger.error(error, 'Erro ao autenticar-se');
+
       if (!requiresAuth) {
         return true;
       }
