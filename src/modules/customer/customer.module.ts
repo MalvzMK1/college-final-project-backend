@@ -3,8 +3,10 @@ import { GetAvailableHoursController } from "./controllers/get-available-hours.c
 import { GetAvailableHoursService } from "./services/get-available-hours.service";
 import { CreateAppointmentController } from "./controllers/create-appointment.controller";
 import { CreateAppointmentService } from "./services/create-appointment.service";
+import { DatabaseModule } from "src/shared";
 
 @Module({
+  imports: [DatabaseModule],
   controllers: [GetAvailableHoursController, CreateAppointmentController],
   providers: [GetAvailableHoursService, CreateAppointmentService],
 })

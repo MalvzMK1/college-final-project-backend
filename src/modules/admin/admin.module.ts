@@ -3,8 +3,10 @@ import { TurnIntoBarberController } from "./controllers/turn-into-barber.control
 import { TurnIntoBarberService } from "./services/turn-into-barber.service";
 import { GetAllUsersController } from "./controllers/get-all-users.controller";
 import { GetAllUsersService } from "./services/get-all-users.service";
+import { DatabaseModule } from "src/shared";
 
 @Module({
+  imports: [DatabaseModule],
   controllers: [TurnIntoBarberController, GetAllUsersController],
   providers: [TurnIntoBarberService, GetAllUsersService],
 })
