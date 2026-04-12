@@ -14,15 +14,18 @@ export class GetAllUsersService {
   ): Promise<GetAllUsersOutputDTO> {
     const where: Prisma.UserWhereInput = {
       id: { not: currentUserId },
-      ...(name && { name: { contains: name, mode: 'insensitive' } }),
-      ...(userTypeId && { userTypeId }),
+      ...(name ? { name: { contains: name, mode: 'insensitive' } } : undefined),
+      ...(userTypeId ? { userTypeId } : undefined),
     };
 
     const [users, totalCount] = await this.prismaService.$transaction([
       this.prismaService.user.findMany({
         where,
-        skip: +skip,
-        take: +take,
+        skip,
+        take,
+        orderBy: {
+          name: Prisma.SortOrder.asc,
+        },
         select: {
           id: true,
           name: true,
