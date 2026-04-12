@@ -67,7 +67,7 @@ describe('GetAvailableHoursService', () => {
     );
 
     expect(tomorrowSlot!.isAvailable).toBe(true);
-    expect(tomorrowSlot!.availableBarbers).toEqual(['Barber Two']);
+    expect(tomorrowSlot!.availableBarbers[0].name).toEqual('Barber Two');
   });
 
   it('should mark as unavailable when all barbers are busy', async () => {

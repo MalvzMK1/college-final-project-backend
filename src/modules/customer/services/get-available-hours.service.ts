@@ -71,7 +71,7 @@ export class GetAvailableHoursService {
         daySlots.hours.push({
           datetime: slotDateTime,
           isAvailable: availableBarbers.length > 0,
-          availableBarbers: availableBarbers.map((b) => b.name),
+          availableBarbers,
         });
       }
 

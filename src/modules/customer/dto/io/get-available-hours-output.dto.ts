@@ -3,7 +3,10 @@ export type GetAvailableHoursOutputDTO = {
     hours: {
       datetime: Date;
       isAvailable: boolean;
-      availableBarbers: string[];
+      availableBarbers: {
+        id: string;
+        name: string;
+      }[];
     }[]
   }[]
 }
