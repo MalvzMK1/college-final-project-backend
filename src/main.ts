@@ -20,7 +20,14 @@ async function bootstrap() {
     .get<string>('API_CORS_HEADERS', '')
     ?.split(',');
 
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
   app.enableCors({
     origin: corsAllowedOrigins === '*' 
       ? true 
