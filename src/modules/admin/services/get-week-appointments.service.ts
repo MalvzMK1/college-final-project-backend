@@ -51,18 +51,21 @@ export class GetWeekAppointmentsService {
   }
 
   private getWeekRange(dateInput?: string) {
-    const date = dateInput ? new Date(dateInput) : new Date();
+    let date: Date;
+    if (dateInput) {
+      date = new Date(`${dateInput}T00:00:00.000Z`);
+    } else {
+      date = new Date();
+    }
     
-    // Start of the week (Sunday)
     const startOfWeek = new Date(date);
-    const day = startOfWeek.getDay();
-    startOfWeek.setDate(startOfWeek.getDate() - day);
-    startOfWeek.setHours(0, 0, 0, 0);
+    const day = startOfWeek.getUTCDay();
+    startOfWeek.setUTCDate(startOfWeek.getUTCDate() - day);
+    startOfWeek.setUTCHours(0, 0, 0, 0);
     
-    // End of the week (Saturday)
     const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(endOfWeek.getDate() + 6);
-    endOfWeek.setHours(23, 59, 59, 999);
+    endOfWeek.setUTCDate(endOfWeek.getUTCDate() + 6);
+    endOfWeek.setUTCHours(23, 59, 59, 999);
     
     return { startOfWeek, endOfWeek };
   }
