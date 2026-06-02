@@ -19,7 +19,6 @@ model User {
   email          String @unique
   hashedPassword String
   userTypeId     Int
-  photoUrl       String?
 
   userType              UserType      @relation(fields: [userTypeId], references: [id])
   scheduledAppointments Appointment[] @relation("customer")
