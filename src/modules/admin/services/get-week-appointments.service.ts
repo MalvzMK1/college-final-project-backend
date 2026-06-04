@@ -22,7 +22,6 @@ export class GetWeekAppointmentsService {
       },
       select: {
         id: true,
-        note: true,
         dateTime: true,
         customer: {
           select: {
@@ -43,7 +42,6 @@ export class GetWeekAppointmentsService {
 
     return appointments.map((appt) => ({
       id: appt.id,
-      note: appt.note,
       dateTime: appt.dateTime,
       customerName: appt.customer.name,
       status: appt.status,

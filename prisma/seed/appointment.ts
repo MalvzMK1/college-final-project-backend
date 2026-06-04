@@ -39,42 +39,36 @@ export const createAppointments: SeedFunction = async (prisma: PrismaClient) => 
       barberId: rodney.id,
       dateTime: new Date('2026-05-11T09:00:00.000Z'), // Monday
       statusId: AppointmentStatusEnum.PENDING,
-      note: 'Corte social e barba',
     },
     {
       customerId: customers[1].id,
       barberId: rodney.id,
       dateTime: new Date('2026-05-12T10:00:00.000Z'), // Tuesday
       statusId: AppointmentStatusEnum.APPROVED,
-      note: 'Degradê moderno',
     },
     {
       customerId: customers[2].id,
       barberId: rodney.id,
       dateTime: new Date('2026-05-13T14:30:00.000Z'), // Wednesday
       statusId: AppointmentStatusEnum.PENDING,
-      note: 'Apenas aparar barba',
     },
     {
       customerId: customers[3].id,
       barberId: rodney.id,
       dateTime: new Date('2026-05-14T16:00:00.000Z'), // Thursday
       statusId: AppointmentStatusEnum.COMPLETED,
-      note: 'Corte infantil',
     },
     {
       customerId: customers[4].id,
       barberId: rodney.id,
       dateTime: new Date('2026-05-15T11:00:00.000Z'), // Friday
       statusId: AppointmentStatusEnum.NO_SHOW,
-      note: 'Sobrancelha e corte',
     },
     {
       customerId: customers[0].id,
       barberId: rodney.id,
       dateTime: new Date('2026-05-16T15:00:00.000Z'), // Saturday
       statusId: AppointmentStatusEnum.PENDING,
-      note: 'Pezinho e lavagem',
     },
 
     // Antonio's Appointments (to test isolation)
@@ -83,14 +77,12 @@ export const createAppointments: SeedFunction = async (prisma: PrismaClient) => 
       barberId: antonio.id,
       dateTime: new Date('2026-05-11T10:30:00.000Z'), // Monday
       statusId: AppointmentStatusEnum.PENDING,
-      note: 'Corte clássico e toalha quente',
     },
     {
       customerId: customers[2].id,
       barberId: antonio.id,
       dateTime: new Date('2026-05-13T16:00:00.000Z'), // Wednesday
       statusId: AppointmentStatusEnum.APPROVED,
-      note: 'Selagem capilar',
     },
   ];
 

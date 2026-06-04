@@ -27,14 +27,12 @@ describe('GetWeekAppointmentsService', () => {
   const mockDbAppointments = [
     {
       id: 1,
-      note: 'Note 1',
       dateTime: new Date('2026-05-11T10:00:00.000Z'),
       customer: { name: 'Customer A' },
       status: { id: 2, name: 'Aprovado' },
     },
     {
       id: 2,
-      note: null,
       dateTime: new Date('2026-05-12T14:30:00.000Z'),
       customer: { name: 'Customer B' },
       status: { id: 1, name: 'Pendente' },
@@ -73,7 +71,6 @@ describe('GetWeekAppointmentsService', () => {
       },
       select: {
         id: true,
-        note: true,
         dateTime: true,
         customer: {
           select: {
@@ -95,14 +92,12 @@ describe('GetWeekAppointmentsService', () => {
     expect(result).toHaveLength(2);
     expect(result[0]).toEqual({
       id: 1,
-      note: 'Note 1',
       dateTime: mockDbAppointments[0].dateTime,
       customerName: 'Customer A',
       status: { id: 2, name: 'Aprovado' },
     });
     expect(result[1]).toEqual({
       id: 2,
-      note: null,
       dateTime: mockDbAppointments[1].dateTime,
       customerName: 'Customer B',
       status: { id: 1, name: 'Pendente' },
