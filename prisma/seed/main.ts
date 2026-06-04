@@ -2,7 +2,7 @@ import { PrismaClient } from "../../generated/prisma/client";
 import { createAppointmentStatus } from "./appointment-status";
 import { createUsers } from "./user";
 import { createUserTypes } from "./user-type";
-import { createAppointments } from "./appointment";
+// import { createAppointments } from "./appointment";
 import { PrismaPg } from "@prisma/adapter-pg";
 
 type Environment = 'development' | 'production';
@@ -35,7 +35,7 @@ async function main() {
   const developmentSeeds = [
     ...prodSeeds,
     createUsers,
-    createAppointments,
+    // createAppointments,
   ]
 
   const environment = getEnvironmentFromProcess();
