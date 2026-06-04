@@ -11,18 +11,18 @@ describe('GetWeekAppointmentsService', () => {
   // Reference date: Wednesday, May 13, 2026
   // Sunday of this week is May 10, 2026 (00:00:00.000 local time)
   // Saturday of this week is May 16, 2026 (23:59:59.999 local time)
-  const referenceDate = '2026-05-13T12:00:00.000Z';
+  const referenceDate = '2026-05-13';
   
-  // Calculate expected dates dynamically to match current environment timezone
-  const refDateObj = new Date(referenceDate);
+  // Calculate expected dates dynamically using UTC to match service logic
+  const refDateObj = new Date(`${referenceDate}T00:00:00.000Z`);
   const expectedStart = new Date(refDateObj);
-  const startDay = refDateObj.getDay();
-  expectedStart.setDate(refDateObj.getDate() - startDay);
-  expectedStart.setHours(0, 0, 0, 0);
+  const startDay = refDateObj.getUTCDay();
+  expectedStart.setUTCDate(refDateObj.getUTCDate() - startDay);
+  expectedStart.setUTCHours(0, 0, 0, 0);
 
   const expectedEnd = new Date(expectedStart);
-  expectedEnd.setDate(expectedStart.getDate() + 6);
-  expectedEnd.setHours(23, 59, 59, 999);
+  expectedEnd.setUTCDate(expectedStart.getUTCDate() + 6);
+  expectedEnd.setUTCHours(23, 59, 59, 999);
 
   const mockDbAppointments = [
     {
