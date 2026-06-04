@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FindLastAppointmentsService } from './find-last-appointments.service';
 import { PrismaService, UserTypesEnum } from 'src/shared';
 import { AuthenticatedUser } from 'src/shared/types';
+import { GetLastAppointmentsService } from './get-last-appointments.service';
 
-describe('FindLastAppointmentsService', () => {
-  let service: FindLastAppointmentsService;
+describe('GetLastAppointmentsService', () => {
+  let service: GetLastAppointmentsService;
   let prismaService: PrismaService;
 
   const mockUser: AuthenticatedUser = {
@@ -32,7 +32,7 @@ describe('FindLastAppointmentsService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        FindLastAppointmentsService,
+        GetLastAppointmentsService,
         {
           provide: PrismaService,
           useValue: {
@@ -44,7 +44,7 @@ describe('FindLastAppointmentsService', () => {
       ],
     }).compile();
 
-    service = module.get<FindLastAppointmentsService>(FindLastAppointmentsService);
+    service = module.get<GetLastAppointmentsService>(GetLastAppointmentsService);
     prismaService = module.get<PrismaService>(PrismaService);
   });
 

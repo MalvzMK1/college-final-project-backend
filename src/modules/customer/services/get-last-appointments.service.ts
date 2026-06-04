@@ -1,13 +1,13 @@
 import { Injectable } from "@nestjs/common";
-import { FindLastAppointmentsOutputDTO } from "../dto/io/find-last-appointments-output.dto";
 import { PrismaService } from "src/shared";
 import { AuthenticatedUser } from "src/shared/types";
+import { GetLastAppointmentsOutputDTO } from "../dto/io/get-last-appointments-output.dto";
 
 @Injectable()
-export class FindLastAppointmentsService {
+export class GetLastAppointmentsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  public async execute(user: AuthenticatedUser): Promise<FindLastAppointmentsOutputDTO> {
+  public async execute(user: AuthenticatedUser): Promise<GetLastAppointmentsOutputDTO> {
     const oneYearAgo = new Date();
     oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 

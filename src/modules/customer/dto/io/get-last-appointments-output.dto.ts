@@ -1,4 +1,4 @@
-export type FindLastAppointmentsOutputDTO = {
+export type GetLastAppointmentsOutputDTO = {
   id: number;
   dateTime: Date;
   createdAt: Date;
