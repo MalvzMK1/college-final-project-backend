@@ -19,7 +19,6 @@ model User {
   email          String @unique
   hashedPassword String
   userTypeId     Int
-  photoUrl       String?
 
   userType              UserType      @relation(fields: [userTypeId], references: [id])
   scheduledAppointments Appointment[] @relation("customer")
@@ -45,11 +44,11 @@ model Appointment {
   updatedAt   DateTime @default(now())
   customerId  String   @db.Uuid()
   barberId    String   @db.Uuid()
-  statusId    Int?     @default(1) // pending
+  statusId    Int      @default(1) // pending
 
   customer User               @relation(fields: [customerId], references: [id], name: "customer")
   barber   User               @relation(fields: [barberId], references: [id], name: "user")
-  status   AppointmentStatus? @relation(fields: [statusId], references: [id])
+  status   AppointmentStatus  @relation(fields: [statusId], references: [id])
 
   @@map("appointments")
 }
